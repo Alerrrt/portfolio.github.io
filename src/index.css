@@ -1,0 +1,214 @@
+@import url('https://fonts.cdnfonts.com/css/neuebit');
+@import url('https://fonts.cdnfonts.com/css/public-pixel');
+@import url('https://fonts.cdnfonts.com/css/countdown');
+@import url('https://fonts.cdnfonts.com/css/stop');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-mac-gray text-black;
+    cursor: url('/retro-cursor.png'), auto;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    cursor: url('/retro-cursor.png'), pointer;
+  }
+
+  .font-arcade {
+    font-family: 'Press Start 2P', cursive;
+  }
+
+  .font-stop {
+    font-family: 'Stop', 'VT323', sans-serif;
+  }
+
+  .font-robco {
+    font-family: 'Share Tech Mono', monospace;
+  }
+
+  .font-countdown {
+    font-family: 'Countdown', sans-serif;
+  }
+
+  /* Using Public Pixel as stable free alternative to Auroral */
+  .font-auroral {
+    font-family: 'Public Pixel', 'VT323', sans-serif;
+  }
+
+  .font-neuebit {
+    font-family: 'NeueBit', 'VT323', sans-serif;
+  }
+}
+
+/* Global Theme Inversion */
+html.theme-inverted {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Re-invert media so they look natural, BUT skip adaptive icons */
+html.theme-inverted img:not(.theme-adaptive),
+html.theme-inverted video {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Adaptive Icon: Multiply blends white bg to transparent in light mode */
+/* Adaptive Icon: Multiply blends white bg to transparent in light mode */
+.theme-adaptive {
+  mix-blend-mode: multiply;
+}
+
+/* In Dark Mode (Inverted), use Screen to blend the now-black background */
+html.theme-inverted .theme-adaptive {
+  mix-blend-mode: screen;
+}
+
+.bg-dither {
+  background-image: url('/dither_blocks.png');
+  background-repeat: repeat;
+  background-size: 300px;
+  /* Larger to show block detail */
+  opacity: 0.15;
+  /* More visible texture */
+  mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
+  /* Ensure it doesn't block clicks */
+  pointer-events: none;
+}
+
+.bg-pattern {
+  background-color: #ececeb;
+  background-image: radial-gradient(#a3a3a3 1px, transparent 1px);
+  background-size: 20px 20px;
+  animation: pan-background 60s linear infinite;
+}
+
+@keyframes pan-background {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+/* Retro Glitch Effect */
+.glitch {
+  position: relative;
+  color: black;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  color: #ff00ff;
+  z-index: -1;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  animation: glitch-anim-1 3s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  color: #00ffff;
+  z-index: -2;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim-1 {
+  0% {
+    clip-path: inset(20% 0 80% 0);
+    transform: translate(-2px, 1px);
+  }
+
+  20% {
+    clip-path: inset(60% 0 10% 0);
+    transform: translate(2px, -1px);
+  }
+
+  40% {
+    clip-path: inset(40% 0 50% 0);
+    transform: translate(-2px, 2px);
+  }
+
+  60% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(2px, -2px);
+  }
+
+  80% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-1px, 1px);
+  }
+
+  100% {
+    clip-path: inset(30% 0 20% 0);
+    transform: translate(1px, -1px);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip-path: inset(10% 0 60% 0);
+    transform: translate(2px, -1px);
+  }
+
+  20% {
+    clip-path: inset(80% 0 5% 0);
+    transform: translate(-2px, 2px);
+  }
+
+  40% {
+    clip-path: inset(30% 0 20% 0);
+    transform: translate(2px, -2px);
+  }
+
+  60% {
+    clip-path: inset(15% 0 80% 0);
+    transform: translate(-1px, 1px);
+  }
+
+  80% {
+    clip-path: inset(55% 0 10% 0);
+    transform: translate(1px, -1px);
+  }
+
+  100% {
+    clip-path: inset(40% 0 30% 0);
+    transform: translate(-2px, 1px);
+  }
+}
+
+/* Halftone Overlay */
+.halftone {
+  position: relative;
+}
+
+.halftone::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle, #000 1px, transparent 1.5px);
+  background-size: 4px 4px;
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 10;
+}
