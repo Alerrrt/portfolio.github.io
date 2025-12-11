@@ -69,7 +69,7 @@ const Hero = () => {
             <div className="relative max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full px-4 z-10">
                 <div className="flex-1 w-full text-center md:text-left">
                     <Terminal size={40} className="mb-4 text-black" />
-                    <h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight min-h-[3.5em] md:min-h-[2.5em] whitespace-pre-line leading-tight text-black font-neglia">
+                    <h1 className="text-3xl md:text-5xl font-bold mb-6 tracking-tight min-h-[3.5em] md:min-h-[2.5em] whitespace-pre-line leading-tight text-black font-hyper">
                         {text}
                         <span className="animate-pulse text-black">_</span>
                     </h1>
