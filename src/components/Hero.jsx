@@ -44,7 +44,7 @@ const Hero = () => {
                         {text}
                         <span className="animate-pulse text-black">_</span>
                     </h1>
-                    <p className="text-lg mb-8 leading-relaxed font-mono max-w-2xl text-mac-text">
+                    <p className="text-lg mb-8 leading-relaxed font-offbit max-w-2xl text-mac-text">
                         Cybersecurity professional specializing in Penetration Testing and Web3. Expert in preventing cyber threats and securing websites.
                     </p>
                     <div className="flex gap-4 justify-center md:justify-start">
