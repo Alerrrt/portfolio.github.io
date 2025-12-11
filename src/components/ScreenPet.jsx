@@ -23,6 +23,10 @@ const ScreenPet = () => {
                 setSprite(prev => (prev === 'bird_up.png' ? 'bird_down.png' : 'bird_up.png'));
             } else if (state.current === 'PERCHED' || state.current === 'IDLE_TOP_LEFT') {
                 setSprite('bird_sit.png');
+                // Idle Animation: Look around randomly
+                if (Math.random() > 0.92) {
+                    setFacingRight(prev => !prev);
+                }
             }
         }, 200);
 
