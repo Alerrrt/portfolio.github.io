@@ -95,8 +95,11 @@ const ScreenPet = () => {
             bird.style.top = `${birdPos.current.y}px`;
 
             // Trail logic
-            if ((state.current === 'FLY_IN' || state.current === 'ROAMING') && Math.random() > 0.9) {
-                createTrail(birdPos.current.x, birdPos.current.y);
+            if ((state.current === 'FLY_IN' || state.current === 'ROAMING')) {
+                // Less frequent trails for cleaner look
+                if (Math.random() > 0.8) {
+                    createTrail(birdPos.current.x, birdPos.current.y, facingRight);
+                }
             }
 
             requestRef.current = requestAnimationFrame(loop);
@@ -159,11 +162,19 @@ const ScreenPet = () => {
         };
     }, []);
 
-    const createTrail = (x, y) => {
+    const createTrail = (x, y, isFacingRight) => {
         const trail = document.createElement('div');
         trail.className = 'pixel-trail';
-        trail.style.left = `${x + 30}px`;
-        trail.style.top = `${y + 30}px`;
+
+        // Offset Logic for "Following"
+        // If facing Right (Moving Right) -> Trail spawns on Left (Tail), closer to x
+        // If facing Left (Moving Left) -> Trail spawns on Right (Tail), closer to x + width
+        const offsetX = isFacingRight ? 0 : 55;
+        const offsetY = 40; // Near feet/belly
+
+        trail.style.left = `${x + offsetX}px`;
+        trail.style.top = `${y + offsetY}px`;
+
         document.body.appendChild(trail);
         setTimeout(() => trail.remove(), 1000);
     };
