@@ -1,16 +1,28 @@
-# React + Vite
+# Hi there, I'm Ajin! 👋
+### "Not really a dev" (but I pretend well)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to my digital playground. I'm a cybersecurity professional who occasionally masquerades as a developer.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 💻 Personality in Patches
+- 🐛 **Debugging**: I don't have bugs; I have unexpected features.
+- 🔓 **Security**: I break things just to see if I can fix them (50% success rate).
+- ☕ **Fuel**: Converting caffeine into code and anxiety.
+- 🔄 **Workflow**: `git commit -m "oops"` -> `git push --force` -> Pray.
+- 📉 **Optimization**: Living life one buffer overflow at a time.
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 🛠️ Tech Stack & Tools
+- **Languages**: Python, JavaScript (the messy kind), Solidity.
+- **Tools**: Burp Suite, Metasploit, and a lot of Google.
+- **OS**: Kali Linux (because looking cool is half the job).
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 🌐 Connect with me
+- **Website**: [http://ajin.is-a.dev](http://ajin.is-a.dev) (Redirects to my "totally secure" GitHub Pages)
+- **GitHub**: [Alerrrt](https://github.com/Alerrrt)
+
+> "There are 10 types of people in the world: those who understand binary, and those who don't."
