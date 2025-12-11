@@ -2,7 +2,7 @@ import React from 'react';
 
 const ScreenPet = () => {
     // State
-    const [sprite, setSprite] = React.useState('bird_up.png');
+    const [sprite, setSprite] = React.useState('phoenix_fly_up.png');
     const [facingRight, setFacingRight] = React.useState(true);
 
     // Refs for animation loop
@@ -20,11 +20,11 @@ const ScreenPet = () => {
         const animInterval = setInterval(() => {
             if (state.current === 'FLY_IN' || state.current === 'ROAMING') {
                 // Flapping
-                setSprite(prev => (prev === 'bird_up.png' ? 'bird_down.png' : 'bird_up.png'));
+                setSprite(prev => (prev === 'phoenix_fly_up.png' ? 'phoenix_fly_down.png' : 'phoenix_fly_up.png'));
             }
             else if (state.current === 'PERCHED' || state.current === 'IDLE_TOP_LEFT') {
                 // Sitting / Idle
-                setSprite('bird_nerd_idle.png');
+                setSprite('phoenix_idle.png');
 
                 // Random look around (only horizontal flip)
                 if (Math.random() > 0.95) {
@@ -33,7 +33,7 @@ const ScreenPet = () => {
             }
             else if (state.current === 'CODING') {
                 // Typing Animation
-                setSprite(prev => (prev === 'bird_code_1.png' ? 'bird_code_2.png' : 'bird_code_1.png'));
+                setSprite(prev => (prev === 'phoenix_code_1.png' ? 'phoenix_code_2.png' : 'phoenix_code_1.png'));
             }
         }, 200);
 
