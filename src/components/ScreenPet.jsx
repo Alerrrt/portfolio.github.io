@@ -37,7 +37,19 @@ const ScreenPet = () => {
                 const handleTransitionEnd = (e) => {
                     if (e.propertyName === 'top' || e.propertyName === 'left') {
                         // Entry finished
-                        bubble.style.display = 'block';
+
+                        // Check if user has already seen/dismissed the resume bubble
+                        const hasSeenBubble = localStorage.getItem('hasSeenResumeBubble');
+                        if (!hasSeenBubble) {
+                            bubble.style.display = 'block';
+                            // Note: We'll set the flag when they click/download.
+                            // If you want it "start once" (shown once per lifetime), set it here:
+                            // localStorage.setItem('hasSeenResumeBubble', 'true');
+                            // But usually "only once" means "until I interact". 
+                            // Re-reading user request: "popup... must only be once".
+                            // I'll set it here to be safe, so it doesn't show on reload.
+                            localStorage.setItem('hasSeenResumeBubble', 'true');
+                        }
 
                         // Start Chasing Mode
                         isChasing.current = true;
