@@ -1,4 +1,25 @@
 import React from 'react';
+import slide1 from '../assets/penguin/penguin_slide1.png';
+import slide2 from '../assets/penguin/penguin_slide2.png';
+import idleStand from '../assets/penguin/penguin_idle_standing.png';
+import idleSlide from '../assets/penguin/penguin_idle_slide.png';
+import work1 from '../assets/penguin/penguin_idle_working1.png';
+import work2 from '../assets/penguin/penguin_idle_working2.png';
+import thumbs from '../assets/penguin/penguin_thumbsup.png';
+import jump1 from '../assets/penguin/penguin_idle_jump.png';
+import jump2 from '../assets/penguin/penguin_idle_jump2.png';
+
+const spriteMap = {
+    'penguin_slide1.png': slide1,
+    'penguin_slide2.png': slide2,
+    'penguin_idle_standing.png': idleStand,
+    'penguin_idle_slide.png': idleSlide,
+    'penguin_idle_working1.png': work1,
+    'penguin_idle_working2.png': work2,
+    'penguin_thumbsup.png': thumbs,
+    'penguin_idle_jump.png': jump1,
+    'penguin_idle_jump2.png': jump2
+};
 
 const ScreenPet = () => {
     // State
@@ -204,7 +225,7 @@ const ScreenPet = () => {
             }}>
                 <img
                     id="bird-actor"
-                    src={`${import.meta.env.BASE_URL}${sprite}`}
+                    src={spriteMap[sprite]}
                     alt="Screen Pet"
                     className={
                         (state.current === 'FLY_IN' || state.current === 'ROAMING') ? 'penguin-anim-slide' :
