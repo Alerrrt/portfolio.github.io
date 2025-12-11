@@ -294,13 +294,17 @@ html.theme-inverted .hero-blend-img {
 /* Screen Pet Styles */
 #bird-container {
   position: fixed;
-  bottom: -100px;
-  /* Start off-screen */
-  left: -100px;
-  /* Start off-screen */
+  /* Start off-screen (Bottom-Left via Top-Right offsets) */
+  top: 110vh;
+  right: 110vw;
   z-index: 9999;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: top 3s ease-out, right 3s ease-out, transform 0.3s ease;
+}
+
+#bird-container.is-active-top-right {
+  top: 20px;
+  right: 20px;
 }
 
 #bird-actor {
