@@ -2,7 +2,7 @@ import React from 'react';
 
 const ScreenPet = () => {
     // State
-    const [sprite, setSprite] = React.useState('phoenix_fly_up.png');
+    const [sprite, setSprite] = React.useState('penguin_slide.png');
     const [facingRight, setFacingRight] = React.useState(true);
 
     // Refs for animation loop
@@ -19,21 +19,21 @@ const ScreenPet = () => {
         // --- ANIMATION INTERVAL ---
         const animInterval = setInterval(() => {
             if (state.current === 'FLY_IN' || state.current === 'ROAMING') {
-                // Flapping
-                setSprite(prev => (prev === 'phoenix_fly_up.png' ? 'phoenix_fly_down.png' : 'phoenix_fly_up.png'));
+                // Sliding (No flapping needed, just ensure we use the slide sprite)
+                setSprite('penguin_slide.png');
             }
             else if (state.current === 'PERCHED' || state.current === 'IDLE_TOP_LEFT') {
                 // Sitting / Idle
-                setSprite('phoenix_idle.png');
+                setSprite('penguin_idle.png');
 
-                // Random look around (only horizontal flip)
+                // Random look around
                 if (Math.random() > 0.95) {
                     setFacingRight(prev => !prev);
                 }
             }
             else if (state.current === 'CODING') {
-                // Typing Animation
-                setSprite(prev => (prev === 'phoenix_code_1.png' ? 'phoenix_code_2.png' : 'phoenix_code_1.png'));
+                // Typing Animation (using placeholder frames for now if identical)
+                setSprite(prev => (prev === 'penguin_code_1.png' ? 'penguin_code_2.png' : 'penguin_code_1.png'));
             }
         }, 200);
 
