@@ -1,28 +1,49 @@
-# Hi there, I'm Ajin! 👋
-### "Not really a dev" (but I pretend well)
+# Ajin.md
 
-Welcome to my digital playground. I'm a cybersecurity professional who occasionally masquerades as a developer.
+```text
+>_ SYSTEM_BOOT...
+>_ LOADING_IDENTITY_MATRIX...
 
----
+[ USER_PROFILE ]
+Subject: Ajin
+Role:    Security Researcher / "Not really a dev"
+Status:  ONLINE
+Mode:    Caffeine-Enhanced
+```
 
-### 💻 Personality in Patches
-- 🐛 **Debugging**: I don't have bugs; I have unexpected features.
-- 🔓 **Security**: I break things just to see if I can fix them (50% success rate).
-- ☕ **Fuel**: Converting caffeine into code and anxiety.
-- 🔄 **Workflow**: `git commit -m "oops"` -> `git push --force` -> Pray.
-- 📉 **Optimization**: Living life one buffer overflow at a time.
+```text
+>_ CAT PERSONALITY.LOG
 
----
+[+] DEBUGGING....... I don't have bugs, just unexpected features.
+[+] SECURITY........ I break things just to see if I can fix them.
+[+] WORKFLOW........ git commit -m "oops" -> git push --force -> Pray.
+[+] OPTIMIZATION.... Living life one buffer overflow at a time.
+```
 
-### 🛠️ Tech Stack & Tools
-- **Languages**: Python, JavaScript (the messy kind), Solidity.
-- **Tools**: Burp Suite, Metasploit, and a lot of Google.
-- **OS**: Kali Linux (because looking cool is half the job).
+```text
+>_ LS TECH_STACK/
 
----
+[ DIR ] Languages
+   ├── Python
+   ├── JavaScript (The messy kind)
+   └── Solidity
 
-### 🌐 Connect with me
-- **Website**: [http://ajin.is-a.dev](http://ajin.is-a.dev) (Redirects to my "totally secure" GitHub Pages)
-- **GitHub**: [Alerrrt](https://github.com/Alerrrt)
+[ DIR ] Tools
+   ├── Burp Suite
+   ├── Metasploit
+   └── Google (Advanced Operator)
+
+[ DIR ] OS
+   └── Kali Linux (half the job is looking cool)
+```
+
+```text
+>_ CONNECT --VERBOSE
+
+[ LINK ] Website:  http://ajin.is-a.dev
+[ NOTE ] Redirects to my "totally secure" GitHub Pages.
+
+[ LINK ] GitHub:   https://github.com/Alerrrt
+```
 
 > "There are 10 types of people in the world: those who understand binary, and those who don't."
