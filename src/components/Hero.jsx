@@ -52,7 +52,7 @@ const Hero = () => {
                             <Terminal size={20} />
                             View Projects
                         </a>
-                        <a href="#contact" className="bg-black text-white px-6 py-3 rounded-md font-bold hover:bg-gray-800 transition-colors flex items-center gap-2 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        <a href="mailto:sajuajin8680@gmail.com" className="bg-black text-white px-6 py-3 rounded-md font-bold hover:bg-gray-800 transition-colors flex items-center gap-2 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                             <Code size={20} />
                             Contact Me
                         </a>
