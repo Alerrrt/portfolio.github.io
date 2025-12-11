@@ -2,13 +2,13 @@ import React from 'react';
 
 const ScreenPet = () => {
     // State
-    const [sprite, setSprite] = React.useState('bird_up.png'); // bird_up, bird_down, bird_sit
+    const [sprite, setSprite] = React.useState('bird_up.png');
     const [facingRight, setFacingRight] = React.useState(true);
 
     // Refs for animation loop
     const birdPos = React.useRef({ x: -100, y: -100 });
-    const targetPos = React.useRef(null); // {x, y} or null
-    const state = React.useRef('INIT'); // INIT, FLY_IN, IDLE_TOP_LEFT, ROAMING, PERCHED
+    const targetPos = React.useRef(null);
+    const state = React.useRef('INIT'); // INIT, FLY_IN, IDLE_TOP_LEFT, ROAMING, PERCHED, CODING
     const requestRef = React.useRef();
 
     // 1. Logic Loop
@@ -16,17 +16,24 @@ const ScreenPet = () => {
         const bird = document.getElementById('bird-container');
         const bubble = document.querySelector('.speech-bubble');
 
-        // --- FLAPPING LOGIC ---
-        // We toggle sprite only if moving (targetPos is not null)
-        const flapInterval = setInterval(() => {
-            if (state.current === 'FLY_IN' || state.current === 'ROAMING' || state.current === 'CHASING') {
+        // --- ANIMATION INTERVAL ---
+        const animInterval = setInterval(() => {
+            if (state.current === 'FLY_IN' || state.current === 'ROAMING') {
+                // Flapping
                 setSprite(prev => (prev === 'bird_up.png' ? 'bird_down.png' : 'bird_up.png'));
-            } else if (state.current === 'PERCHED' || state.current === 'IDLE_TOP_LEFT') {
-                setSprite('bird_sit.png');
-                // Idle Animation: Look around randomly
-                if (Math.random() > 0.92) {
+            }
+            else if (state.current === 'PERCHED' || state.current === 'IDLE_TOP_LEFT') {
+                // Sitting / Idle
+                setSprite('bird_nerd_idle.png');
+
+                // Random look around (only horizontal flip)
+                if (Math.random() > 0.95) {
                     setFacingRight(prev => !prev);
                 }
+            }
+            else if (state.current === 'CODING') {
+                // Typing Animation
+                setSprite(prev => (prev === 'bird_code_1.png' ? 'bird_code_2.png' : 'bird_code_1.png'));
             }
         }, 200);
 
@@ -36,54 +43,52 @@ const ScreenPet = () => {
 
             // STATE MACHINE
             if (state.current === 'INIT') {
-                // Initialize position off-screen
                 birdPos.current = { x: -100, y: window.innerHeight + 100 };
-                // Start movement to Top-Left
                 state.current = 'FLY_IN';
-                // Define Top-Left
                 targetPos.current = { x: 20, y: 20 };
-
-                // Show standard CSS transition is tricky with JS override. 
-                // We'll do pure JS movement for consistency now.
             }
 
             else if (state.current === 'FLY_IN') {
-                moveTowardsTarget(5); // Fast speed
+                moveTowardsTarget(6);
                 if (hasReachedTarget()) {
                     state.current = 'IDLE_TOP_LEFT';
                     targetPos.current = null;
 
-                    // Show Bubble
+                    // Show Bubble Logic
                     const hasSeen = localStorage.getItem('hasSeenResumeBubble');
-                    // Only show if NOT roaming. Since we are in IDLE_TOP_LEFT, we check.
-                    // User said: "popup... must only be open when the bird coming to the top left corner"
-
                     if (!hasSeen && bubble) {
                         bubble.style.display = 'block';
-                        // Hide after 5 seconds
                         setTimeout(() => {
                             if (bubble) bubble.style.display = 'none';
-                            // Resume behaviors
-                            decideNextMove();
+                            decideNextMove(); // Start roaming after bubble hides
                         }, 5000);
                     } else {
-                        // No bubble needed, wait shorter then roam
                         setTimeout(decideNextMove, 2000);
                     }
                 }
             }
 
             else if (state.current === 'ROAMING') {
-                moveTowardsTarget(3); // Normal speed
+                moveTowardsTarget(4);
                 if (hasReachedTarget()) {
-                    // Arrived at random spot or card
+                    // Landed
                     state.current = 'PERCHED';
                     targetPos.current = null;
-                    // Rest for a while (2s to 6s)
-                    setTimeout(decideNextMove, 3000 + Math.random() * 5000);
+
+                    // Sequence: Perch (Idle) -> Code -> Roam
+                    setTimeout(() => {
+                        // After 2-3s of idle, start coding
+                        state.current = 'CODING';
+
+                        // Code for 4s, then fly away
+                        setTimeout(() => {
+                            decideNextMove();
+                        }, 4000);
+
+                    }, 2000 + Math.random() * 1000);
                 }
             }
-            // PERCHED state does nothing -> waits for timeout to call decideNextMove -> sets ROAMING
+            // PERCHED & CODING states are handled by timeouts/intervals above
 
             // Apply transforms
             bird.style.left = `${birdPos.current.x}px`;
@@ -115,7 +120,6 @@ const ScreenPet = () => {
                 birdPos.current.y += (dy / dist) * speed;
             }
 
-            // Facing
             if (dx > 0) setFacingRight(true);
             if (dx < 0) setFacingRight(false);
         };
@@ -128,26 +132,20 @@ const ScreenPet = () => {
         };
 
         const decideNextMove = () => {
-            // 60% chance to roam to a card
-            // 40% chance to roam to random spot
             state.current = 'ROAMING';
 
-            // Re-query cards in case of dynamic content (rare but safe)
             const cards = document.querySelectorAll('.project-card');
-            const pickCard = Math.random() > 0.4 && cards.length > 0;
+            // 70% chance to pick a card vs random spot
+            const pickCard = Math.random() > 0.3 && cards.length > 0;
 
             if (pickCard) {
                 const randomCard = cards[Math.floor(Math.random() * cards.length)];
                 const rect = randomCard.getBoundingClientRect();
-
-                // rect is relative to viewport, which matches our fixed position system perfectly
-                // Aim for top of card
                 targetPos.current = {
-                    x: rect.left + 20 + Math.random() * (rect.width - 60), // Random spot on top edge
-                    y: rect.top - 50 // Sit on top edge (offset for bird height)
+                    x: rect.left + 20 + Math.random() * (rect.width - 60),
+                    y: rect.top - 45
                 };
             } else {
-                // Random screen spot
                 targetPos.current = {
                     x: Math.random() * (window.innerWidth - 100),
                     y: Math.random() * (window.innerHeight - 200)
@@ -157,12 +155,10 @@ const ScreenPet = () => {
 
         return () => {
             cancelAnimationFrame(requestRef.current);
-            clearInterval(flapInterval);
-            // Bubbles/timeouts might persist
+            clearInterval(animInterval);
         };
     }, []);
 
-    // Helper functions need to be inside or refs
     const createTrail = (x, y) => {
         const trail = document.createElement('div');
         trail.className = 'pixel-trail';
@@ -172,7 +168,6 @@ const ScreenPet = () => {
         setTimeout(() => trail.remove(), 1000);
     };
 
-    // Bubble Click
     const handleBubbleClick = (e) => {
         e.stopPropagation();
         const bubble = document.querySelector('.speech-bubble');
@@ -189,7 +184,7 @@ const ScreenPet = () => {
     };
 
     return (
-        <div id="bird-container" style={{ position: 'fixed', left: -100, top: -100 /* JS controls this */ }}>
+        <div id="bird-container" style={{ position: 'fixed', left: -100, top: -100, zIndex: 9999 }}>
             <div
                 className="speech-bubble"
                 onClick={handleBubbleClick}
@@ -205,7 +200,7 @@ const ScreenPet = () => {
                     width: '64px',
                     transform: facingRight ? 'scaleX(1)' : 'scaleX(-1)',
                     imageRendering: 'pixelated',
-                    mixBlendMode: 'multiply', // Attempt to fix white background if png isn't transparent
+                    mixBlendMode: 'multiply',
                 }}
             />
         </div>
