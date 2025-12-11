@@ -204,7 +204,7 @@ const ScreenPet = () => {
             }}>
                 <img
                     id="bird-actor"
-                    src={sprite}
+                    src={`${import.meta.env.BASE_URL}${sprite}`}
                     alt="Screen Pet"
                     className={
                         (state.current === 'FLY_IN' || state.current === 'ROAMING') ? 'penguin-anim-slide' :
