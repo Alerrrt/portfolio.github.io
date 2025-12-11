@@ -19,12 +19,12 @@ const ScreenPet = () => {
         // --- ANIMATION INTERVAL ---
         const animInterval = setInterval(() => {
             if (state.current === 'FLY_IN' || state.current === 'ROAMING') {
-                // Sliding (No flapping needed, just ensure we use the slide sprite)
-                setSprite('penguin_slide.png');
+                // Sliding Animation
+                setSprite(prev => (prev === 'penguin_slide_1.png' ? 'penguin_slide_2.png' : 'penguin_slide_1.png'));
             }
             else if (state.current === 'PERCHED' || state.current === 'IDLE_TOP_LEFT') {
-                // Sitting / Idle
-                setSprite('penguin_idle.png');
+                // Idle Animation (Breathing/Waddle)
+                setSprite(prev => (prev === 'penguin_idle_1.png' ? 'penguin_idle_2.png' : 'penguin_idle_1.png'));
 
                 // Random look around
                 if (Math.random() > 0.95) {
@@ -102,13 +102,7 @@ const ScreenPet = () => {
             bird.style.left = `${birdPos.current.x}px`;
             bird.style.top = `${birdPos.current.y}px`;
 
-            // Trail logic
-            if ((state.current === 'FLY_IN' || state.current === 'ROAMING')) {
-                // Less frequent trails for cleaner look
-                if (Math.random() > 0.8) {
-                    createTrail(birdPos.current.x, birdPos.current.y, facingRight);
-                }
-            }
+            // trails removed per user request
 
             requestRef.current = requestAnimationFrame(loop);
         };
@@ -169,23 +163,6 @@ const ScreenPet = () => {
             clearInterval(animInterval);
         };
     }, []);
-
-    const createTrail = (x, y, isFacingRight) => {
-        const trail = document.createElement('div');
-        trail.className = 'pixel-trail';
-
-        // Offset Logic for "Following"
-        // If facing Right (Moving Right) -> Trail spawns on Left (Tail), closer to x - 10
-        // If facing Left (Moving Left) -> Trail spawns on Right (Tail), closer to x + 70
-        const offsetX = isFacingRight ? -10 : 70;
-        const offsetY = 45; // Near feet/belly
-
-        trail.style.left = `${x + offsetX}px`;
-        trail.style.top = `${y + offsetY}px`;
-
-        document.body.appendChild(trail);
-        setTimeout(() => trail.remove(), 1000);
-    };
 
     const handleBubbleClick = (e) => {
         e.stopPropagation();
