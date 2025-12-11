@@ -60,6 +60,12 @@ const Certifications = () => {
                     issuer: "Fortinet Self-Paced",
                     date: "",
                     icon: Award
+                },
+                {
+                    title: "CPENT V2AI",
+                    issuer: "Ec-Council",
+                    date: "Ongoing",
+                    icon: Shield
                 }
             ]
         },
