@@ -2,13 +2,13 @@ import React from 'react';
 
 const ScreenPet = () => {
     // State
-    const [sprite, setSprite] = React.useState('penguin_slide.png');
+    const [sprite, setSprite] = React.useState('penguin_slide1.png');
     const [facingRight, setFacingRight] = React.useState(true);
 
     // Refs for animation loop
     const birdPos = React.useRef({ x: -100, y: -100 });
     const targetPos = React.useRef(null);
-    const state = React.useRef('INIT'); // INIT, FLY_IN, IDLE_TOP_LEFT, ROAMING, PERCHED, CODING
+    const state = React.useRef('INIT'); // INIT, FLY_IN, IDLE_TOP_LEFT, ROAMING, IDLE, WORK, THUMBS_UP, JUMP
     const requestRef = React.useRef();
 
     // 1. Logic Loop
@@ -19,24 +19,28 @@ const ScreenPet = () => {
         // --- ANIMATION INTERVAL ---
         const animInterval = setInterval(() => {
             if (state.current === 'FLY_IN' || state.current === 'ROAMING') {
-                // Sliding Animation
-                setSprite(prev => (prev === 'penguin_slide_1.png' ? 'penguin_slide_2.png' : 'penguin_slide_1.png'));
+                // Sliding
+                setSprite(prev => (prev === 'penguin_slide1.png' ? 'penguin_slide2.png' : 'penguin_slide1.png'));
             }
-            else if (state.current === 'PERCHED' || state.current === 'IDLE_TOP_LEFT') {
-                // Idle Animation (Breathing/Waddle)
-                setSprite(prev => (prev === 'penguin_idle_1.png' ? 'penguin_idle_2.png' : 'penguin_idle_1.png'));
+            else if (state.current === 'IDLE' || state.current === 'IDLE_TOP_LEFT') {
+                // Standing Idle
+                setSprite('penguin_idle_standing.png');
 
                 // Random look around
                 if (Math.random() > 0.95) {
                     setFacingRight(prev => !prev);
                 }
             }
-            else if (state.current === 'CODING') {
-                // Typing Animation
-                setSprite(prev => (prev === 'penguin_code_1.png' ? 'penguin_code_2.png' : 'penguin_code_1.png'));
+            else if (state.current === 'WORK') {
+                // Working / Coding
+                setSprite(prev => (prev === 'penguin_idle_working1.png' ? 'penguin_idle_working2.png' : 'penguin_idle_working1.png'));
             }
             else if (state.current === 'THUMBS_UP') {
-                setSprite('penguin_thumbs_up.png');
+                setSprite('penguin_thumbsup.png');
+            }
+            else if (state.current === 'JUMP') {
+                // Jump Animation
+                setSprite(prev => (prev === 'penguin_idle_jump.png' ? 'penguin_idle_jump2.png' : 'penguin_idle_jump.png'));
             }
         }, 200);
 
@@ -74,29 +78,35 @@ const ScreenPet = () => {
             else if (state.current === 'ROAMING') {
                 moveTowardsTarget(4);
                 if (hasReachedTarget()) {
-                    state.current = 'PERCHED';
+                    state.current = 'IDLE';
                     targetPos.current = null;
 
-                    // Sequence: Idle -> Code -> Thumbs Up -> Roam
-                    // 1. Idle for ~2s
+                    // Sequence: Idle -> Work -> Thumbs Up -> Jump -> Roam
+                    // 1. Idle (Rest)
                     setTimeout(() => {
-                        state.current = 'CODING';
+                        state.current = 'WORK';
 
-                        // 2. Code for ~4s
+                        // 2. Work (Code)
                         setTimeout(() => {
                             state.current = 'THUMBS_UP';
 
-                            // 3. Thumbs Up for ~2s (Celebrate fix)
+                            // 3. Thumbs Up (Celeb)
                             setTimeout(() => {
-                                decideNextMove();
-                            }, 2000);
+                                state.current = 'JUMP';
 
-                        }, 4000);
+                                // 4. Jump (Excitement)
+                                setTimeout(() => {
+                                    decideNextMove();
+                                }, 1500); // Jump duration
 
-                    }, 2000 + Math.random() * 500);
+                            }, 1500); // Thumbs up duration
+
+                        }, 3500); // Work duration
+
+                    }, 2000 + Math.random() * 1000); // Idle duration
                 }
             }
-            // PERCHED & CODING states are handled by timeouts/intervals above
+            // Other states handled by timeouts/intervals above
 
             // Apply transforms
             bird.style.left = `${birdPos.current.x}px`;
@@ -198,8 +208,9 @@ const ScreenPet = () => {
                     alt="Screen Pet"
                     className={
                         (state.current === 'FLY_IN' || state.current === 'ROAMING') ? 'penguin-anim-slide' :
-                            (state.current === 'PERCHED' || state.current === 'IDLE_TOP_LEFT') ? 'penguin-anim-idle' :
-                                (state.current === 'THUMBS_UP') ? 'penguin-anim-thumbs' : ''
+                            (state.current === 'IDLE' || state.current === 'IDLE_TOP_LEFT') ? 'penguin-anim-idle' :
+                                (state.current === 'THUMBS_UP') ? 'penguin-anim-thumbs' :
+                                    (state.current === 'JUMP') ? 'penguin-anim-thumbs' : '' // Reuse bounce for jump
                     }
                     style={{
                         width: '64px',
