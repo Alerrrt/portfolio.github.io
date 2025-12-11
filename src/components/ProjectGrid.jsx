@@ -13,7 +13,7 @@ const projects = [
         title: 'Web Penetration Testing',
         description: 'Comprehensive VAPT on web applications with detailed remediation guidance.',
         tags: ['VAPT', 'Burp Suite', 'OWASP'],
-        link: '#',
+        link: '#skills',
         image: 'web-pentest-v2.png'
     },
     {
