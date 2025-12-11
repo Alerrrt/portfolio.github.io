@@ -3,10 +3,10 @@ import { ExternalLink } from 'lucide-react';
 
 const ProjectCard = ({ title, description, tags, link, asciiArt, image }) => {
     return (
-        <div className="border-2 border-mac-border p-4 bg-white shadow-retro flex flex-col hover:bg-gray-50 transition-colors h-full">
+        <div className="border-2 border-mac-border p-4 bg-white shadow-retro flex flex-col hover-lift transition-colors h-full">
             <div className={`h-40 bg-gray-200 mb-4 border border-mac-border border-dashed flex items-center justify-center overflow-hidden ${image ? 'p-0' : ''}`}>
                 {image ? (
-                    <img src={image} alt={title} className="w-full h-full object-cover grayscale contrast-125" />
+                    <img src={image} alt={title} className="w-full h-full object-cover object-center grayscale contrast-125" />
                 ) : asciiArt ? (
                     <pre className="font-mono text-[8px] leading-[8px] sm:text-[10px] sm:leading-[10px] text-gray-800 whitespace-pre text-center select-none opacity-80">
                         {asciiArt}

@@ -71,22 +71,100 @@ html.theme-inverted .theme-adaptive {
 }
 
 .bg-dither {
-  background-image: url('/dither_blocks.png');
+  background-image: url('/dither.png');
   background-repeat: repeat;
-  background-size: 300px;
-  /* Larger to show block detail */
-  opacity: 0.15;
-  /* More visible texture */
+  background-size: 150px;
+  /* Adjust size for pixel density */
+  opacity: 0.08;
+  /* Subtle texture */
   mask-image: linear-gradient(to bottom, black 0%, transparent 90%);
   /* Ensure it doesn't block clicks */
   pointer-events: none;
 }
+
 
 .bg-pattern {
   background-color: #ececeb;
   background-image: radial-gradient(#a3a3a3 1px, transparent 1px);
   background-size: 20px 20px;
   animation: pan-background 60s linear infinite;
+}
+
+/* Hero Custom Background with Blending */
+.bg-hero-custom {
+  position: relative;
+  /* Ensure content stays on top */
+  z-index: 10;
+}
+
+.bg-hero-custom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/Clean.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+  opacity: 0.5;
+  /* Slight transparency for better text readability */
+  mix-blend-mode: multiply;
+  /* Default to multiply for light mode */
+  /* Add grayscale and high contrast for retro look */
+  filter: grayscale(100%) contrast(110%);
+}
+
+/* Dark mode handling for the background blend */
+html.theme-inverted .bg-hero-custom::before {
+  mix-blend-mode: screen;
+  opacity: 0.2;
+  /* Lower opacity for dark mode */
+  filter: grayscale(100%) contrast(120%);
+}
+
+/* Add pseudo-element for dither overlay */
+.bg-hero-custom::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/dither.png');
+  background-repeat: repeat;
+  background-size: 4px 4px;
+  /* Adjust based on dither png resolution */
+  opacity: 0.3;
+  z-index: -1;
+  /* Same level as image */
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Add mask to fade image edges for perfect blending */
+.bg-hero-custom::before {
+  -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 100%);
+  mask-image: radial-gradient(circle at center, black 0%, transparent 100%);
+}
+
+/* New class for blending the image element directly */
+.hero-blend-img {
+  mix-blend-mode: multiply;
+  filter: grayscale(100%) contrast(110%);
+  -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+  opacity: 0.9;
+  pointer-events: none;
+  user-select: none;
+}
+
+html.theme-inverted .hero-blend-img {
+  mix-blend-mode: screen;
+  filter: grayscale(100%) contrast(120%);
+  opacity: 0.6;
 }
 
 @keyframes pan-background {

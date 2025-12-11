@@ -13,13 +13,15 @@ const projects = [
         title: 'Web Penetration Testing',
         description: 'Comprehensive VAPT on web applications with detailed remediation guidance.',
         tags: ['VAPT', 'Burp Suite', 'OWASP'],
-        link: '#'
+        link: '#',
+        image: '/web-pentest-v2.png'
     },
     {
-        title: 'Web3 Security Research',
-        description: 'Vulnerability research, public disclosures, and bug bounty programs focusing on DeFi protocols.',
-        tags: ['Smart Contracts', 'Solidity', 'DeFi'],
-        link: '#'
+        title: 'Web3 Community Building',
+        description: 'Served as a Business Development Intern at 5irechain, contributing to ecosystem growth and community expansion.',
+        tags: ['Business Development', 'Community', 'Web3'],
+        link: '#',
+        image: '/Web.png'
     }
 ];
 
