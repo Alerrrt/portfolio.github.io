@@ -290,3 +290,53 @@ html.theme-inverted .hero-blend-img {
   pointer-events: none;
   z-index: 10;
 }
+
+/* Screen Pet Styles */
+#bird-container {
+  position: fixed;
+  bottom: -100px;
+  /* Start off-screen */
+  left: -100px;
+  /* Start off-screen */
+  z-index: 9999;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#bird-actor {
+  width: 64px;
+  height: auto;
+  image-rendering: pixelated;
+  /* Keeps it retro */
+}
+
+.speech-bubble {
+  position: absolute;
+  bottom: 100%;
+  /* Just above the bird */
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  font-family: 'NeueBit', monospace;
+  font-size: 1.2rem;
+  color: black;
+  display: none;
+  /* Hidden by default */
+}
+
+/* Comic bubble tail */
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -6px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}

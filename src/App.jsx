@@ -5,11 +5,13 @@ import ProjectGrid from './components/ProjectGrid';
 import Experience from './components/Experience';
 import Skills from './components/Skills';
 import Certifications from './components/Certifications';
+import ScreenPet from './components/ScreenPet';
 import RevealOnScroll from './components/RevealOnScroll';
 
 function App() {
   return (
     <Layout>
+      <ScreenPet />
       <Hero />
       <RevealOnScroll delay={100}>
         <ProjectGrid />
