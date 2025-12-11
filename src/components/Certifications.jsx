@@ -11,38 +11,44 @@ const Certifications = () => {
                     issuer: "Data Security Council of India",
                     date: "Aug 2025",
                     id: "BEN-19092503",
-                    icon: Shield
+                    icon: Shield,
+                    link: "https://www.credly.com/badges/ac23c6ec-921b-40ab-bf8b-e99691fb66af/linked_in_profile"
                 },
                 {
                     title: "Certified Penetration Testing",
                     issuer: "Red Team Hacker Academy, Kochi",
                     date: "Sept 2023",
                     id: "RTXSTU112405977",
-                    icon: Shield
+                    icon: Shield,
+                    link: "RedTeam-CPT-Certificate.pdf"
                 },
                 {
                     title: "EyeDotNet Ethical Hacking Internship Program",
                     issuer: "EyeDotNet",
                     date: "June 2024",
-                    icon: Award
+                    icon: Award,
+                    link: "Course_Completion_Certificate (4).pdf"
                 },
                 {
                     title: "CEH v11: Fileless Malware, Malware Analysis & Countermeasures",
                     issuer: "Skillsoft",
                     date: "March 2023",
-                    icon: Shield
+                    icon: Shield,
+                    link: "https://skillsoft.digitalbadges.skillsoft.com/5adc6bcb-55c9-4319-ac4a-54837c511fbb#acc.oTgV7mPE"
                 },
                 {
                     title: "Configuring Cloud Security",
                     issuer: "Skillsoft",
                     date: "May 2023",
-                    icon: Shield
+                    icon: Shield,
+                    link: "https://skillsoft.digitalbadges.skillsoft.com/d68b20eb-2720-46cf-b7dc-b2603ee28378#acc.79m8pJ4F"
                 },
                 {
                     title: "Digital Forensic Techniques & Investigative Approaches",
                     issuer: "Skillsoft",
                     date: "May 2023",
-                    icon: Shield
+                    icon: Shield,
+                    link: "https://skillsoft.digitalbadges.skillsoft.com/118b70fd-6544-478d-919f-95e83ff0d3f5#acc.48h2YeJO"
                 }
             ]
         },
@@ -53,13 +59,15 @@ const Certifications = () => {
                     title: "FCF - Fortinet Certified Fundamentals in Cybersecurity",
                     issuer: "Fortinet",
                     date: "May 2024",
-                    icon: Award
+                    icon: Award,
+                    link: "Fortinet cyber security2.0.png"
                 },
                 {
                     title: "Getting Started in CyberSecurity 2.0",
                     issuer: "Fortinet Self-Paced",
                     date: "",
-                    icon: Award
+                    icon: Award,
+                    link: "Fortinet cyber security2.0.png"
                 },
                 {
                     title: "CPENT V2AI",
@@ -146,9 +154,13 @@ const Certifications = () => {
                                                 )}
                                             </div>
                                             {/* Link placeholder */}
-                                            <a href="#" className="text-black hover:text-gray-600 transition-colors">
-                                                <ExternalLink size={18} />
-                                            </a>
+                                            {item.link ? (
+                                                <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-black hover:text-gray-600 transition-colors" title="View Certificate">
+                                                    <ExternalLink size={18} />
+                                                </a>
+                                            ) : (
+                                                <div className="w-[18px]"></div> /* Spacer if no link */
+                                            )}
                                         </div>
                                     </div>
                                 ))}
