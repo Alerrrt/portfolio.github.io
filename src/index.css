@@ -346,6 +346,71 @@ html.theme-inverted .hero-blend-img {
   /* Arrow points Left (border-right is visible) */
 }
 
+/* Penguin CSS Animations */
+@keyframes slide-bob {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-2px) rotate(2deg);
+  }
+
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  75% {
+    transform: translateY(-2px) rotate(-1deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes idle-breathe {
+  0% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(1.05) translateY(-1px);
+  }
+
+  /* Inhale / Stretch up */
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes thumbs-bounce {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.penguin-anim-slide {
+  animation: slide-bob 0.4s infinite linear;
+}
+
+.penguin-anim-idle {
+  animation: idle-breathe 2s infinite ease-in-out;
+}
+
+.penguin-anim-thumbs {
+  animation: thumbs-bounce 1s infinite ease-in-out;
+}
+
+
 /* 8-bit Trail Particle */
 .pixel-trail {
   position: fixed;

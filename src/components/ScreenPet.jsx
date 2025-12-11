@@ -183,22 +183,32 @@ const ScreenPet = () => {
         <div id="bird-container" style={{ position: 'fixed', left: -100, top: -100, zIndex: 9999 }}>
             <div
                 className="speech-bubble"
-                onClick={handleBubbleClick}
                 style={{ cursor: 'pointer' }}
             >
                 Click to download resume
             </div>
-            <img
-                id="bird-actor"
-                src={sprite}
-                alt="Screen Pet"
-                style={{
-                    width: '64px',
-                    transform: facingRight ? 'scaleX(1)' : 'scaleX(-1)',
-                    imageRendering: 'pixelated',
-                    mixBlendMode: 'multiply',
-                }}
-            />
+            <div style={{
+                transform: facingRight ? 'scaleX(1)' : 'scaleX(-1)',
+                display: 'inline-block',
+                transition: 'transform 0.1s' // Smooth turning
+            }}>
+                <img
+                    id="bird-actor"
+                    src={sprite}
+                    alt="Screen Pet"
+                    className={
+                        (state.current === 'FLY_IN' || state.current === 'ROAMING') ? 'penguin-anim-slide' :
+                            (state.current === 'PERCHED' || state.current === 'IDLE_TOP_LEFT') ? 'penguin-anim-idle' :
+                                (state.current === 'THUMBS_UP') ? 'penguin-anim-thumbs' : ''
+                    }
+                    style={{
+                        width: '64px',
+                        imageRendering: 'pixelated',
+                        mixBlendMode: 'multiply',
+                        display: 'block'
+                    }}
+                />
+            </div>
         </div>
     );
 };
