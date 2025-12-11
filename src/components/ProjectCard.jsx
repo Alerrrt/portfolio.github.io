@@ -3,7 +3,12 @@ import { ExternalLink } from 'lucide-react';
 
 const ProjectCard = ({ title, description, tags, link, asciiArt, image }) => {
     return (
-        <div className="border-2 border-mac-border p-4 bg-white shadow-retro flex flex-col hover-lift transition-colors h-full">
+        <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="project-card block group relative rounded-xl border-2 border-mac-border bg-mac-gray/50 p-4 transition-all hover:scale-[1.02] hover:shadow-mac-hard hover:border-black hover-lift h-full flex flex-col"
+        >
             <div className={`h-40 bg-gray-200 mb-4 border border-mac-border border-dashed flex items-center justify-center overflow-hidden ${image ? 'p-0' : ''}`}>
                 {image ? (
                     <img src={image} alt={title} className="w-full h-full object-cover object-center grayscale contrast-125" />
@@ -25,10 +30,10 @@ const ProjectCard = ({ title, description, tags, link, asciiArt, image }) => {
                 ))}
             </div>
 
-            <a href={link} className="inline-flex items-center gap-2 text-sm font-bold border-t border-mac-border pt-4 mt-auto hover:text-blue-600">
+            <span className="inline-flex items-center gap-2 text-sm font-bold border-t border-mac-border pt-4 mt-auto group-hover:text-blue-600">
                 View Project <ExternalLink size={14} />
-            </a>
-        </div>
+            </span>
+        </a>
     );
 };
 
