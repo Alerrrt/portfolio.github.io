@@ -6,6 +6,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 @import url('https://fonts.cdnfonts.com/css/vt323');
 @import url('https://fonts.cdnfonts.com/css/offbit');
+@import url('https://fonts.cdnfonts.com/css/dither-byte');
 
 @tailwind base;
 @tailwind components;
@@ -51,6 +52,10 @@
   .font-offbit {
     font-family: 'OffBit', sans-serif;
     font-weight: 700;
+  }
+
+  .font-dither {
+    font-family: 'Dither Byte', sans-serif;
   }
 }
 
