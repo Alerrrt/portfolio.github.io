@@ -7,21 +7,21 @@ const projects = [
         description: 'Advanced security scanner with robust concurrency and real-time updates.',
         tags: ['Security Scanner', 'Python', 'React'],
         link: 'https://github.com/Alerrrt/Project-Nightingale-V2',
-        image: '/Nigingale-ASCII.png'
+        image: 'Nigingale-ASCII.png'
     },
     {
         title: 'Web Penetration Testing',
         description: 'Comprehensive VAPT on web applications with detailed remediation guidance.',
         tags: ['VAPT', 'Burp Suite', 'OWASP'],
         link: '#',
-        image: '/web-pentest-v2.png'
+        image: 'web-pentest-v2.png'
     },
     {
         title: 'Web3 Community Building',
         description: 'Served as a Business Development Intern at 5irechain, contributing to ecosystem growth and community expansion.',
         tags: ['Business Development', 'Community', 'Web3'],
         link: '#',
-        image: '/Web.png'
+        image: 'Web.png'
     }
 ];
 

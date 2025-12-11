@@ -28,7 +28,7 @@ const Hero = () => {
         <section
             className="relative py-12 md:py-20 border-b-2 border-mac-border border-dashed mb-12 min-h-[600px] flex items-center overflow-hidden"
             style={{
-                backgroundImage: "url('/Clean.png')",
+                backgroundImage: "url('Clean.png')",
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat'

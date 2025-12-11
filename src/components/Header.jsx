@@ -32,7 +32,7 @@ const Header = () => {
         <header className="fixed top-0 left-0 w-full bg-mac-window border-b-2 border-mac-border z-50 flex items-center px-2 h-8 font-retro text-sm select-none shadow-retro">
             <div className="flex items-center gap-4">
                 <button className="hover:bg-mac-blue hover:text-white px-2 py-1 rounded-sm transition-colors flex items-center justify-center">
-                    <img src="/retro-computer-adaptive.png" alt="Retro Computer Icon" className="w-6 h-6 object-contain theme-adaptive" />
+                    <img src="retro-computer-adaptive.png" alt="Retro Computer Icon" className="w-6 h-6 object-contain theme-adaptive" />
                 </button>
             </div>
 
