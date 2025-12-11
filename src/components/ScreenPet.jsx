@@ -23,11 +23,11 @@ const ScreenPet = () => {
                 setSprite(prev => (prev === 'penguin_slide1.png' ? 'penguin_slide2.png' : 'penguin_slide1.png'));
             }
             else if (state.current === 'IDLE' || state.current === 'IDLE_TOP_LEFT') {
-                // Standing Idle
-                setSprite('penguin_idle_standing.png');
+                // Idle Animation: Toggle between Standing and "Idle Slide" (assuming it's a breath/pose change)
+                setSprite(prev => (prev === 'penguin_idle_standing.png' ? 'penguin_idle_slide.png' : 'penguin_idle_standing.png'));
 
-                // Random look around
-                if (Math.random() > 0.95) {
+                // Random look around (reduced frequency)
+                if (Math.random() > 0.98) {
                     setFacingRight(prev => !prev);
                 }
             }
@@ -208,7 +208,7 @@ const ScreenPet = () => {
                     alt="Screen Pet"
                     className={
                         (state.current === 'FLY_IN' || state.current === 'ROAMING') ? 'penguin-anim-slide' :
-                            (state.current === 'IDLE' || state.current === 'IDLE_TOP_LEFT') ? 'penguin-anim-idle' :
+                            (state.current === 'IDLE' || state.current === 'IDLE_TOP_LEFT') ? '' : // No CSS anim, sprite only
                                 (state.current === 'THUMBS_UP') ? 'penguin-anim-thumbs' :
                                     (state.current === 'JUMP') ? 'penguin-anim-thumbs' : '' // Reuse bounce for jump
                     }
