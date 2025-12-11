@@ -32,8 +32,11 @@ const ScreenPet = () => {
                 }
             }
             else if (state.current === 'CODING') {
-                // Typing Animation (using placeholder frames for now if identical)
+                // Typing Animation
                 setSprite(prev => (prev === 'penguin_code_1.png' ? 'penguin_code_2.png' : 'penguin_code_1.png'));
+            }
+            else if (state.current === 'THUMBS_UP') {
+                setSprite('penguin_thumbs_up.png');
             }
         }, 200);
 
@@ -60,7 +63,7 @@ const ScreenPet = () => {
                         bubble.style.display = 'block';
                         setTimeout(() => {
                             if (bubble) bubble.style.display = 'none';
-                            decideNextMove(); // Start roaming after bubble hides
+                            decideNextMove();
                         }, 5000);
                     } else {
                         setTimeout(decideNextMove, 2000);
@@ -71,21 +74,26 @@ const ScreenPet = () => {
             else if (state.current === 'ROAMING') {
                 moveTowardsTarget(4);
                 if (hasReachedTarget()) {
-                    // Landed
                     state.current = 'PERCHED';
                     targetPos.current = null;
 
-                    // Sequence: Perch (Idle) -> Code -> Roam
+                    // Sequence: Idle -> Code -> Thumbs Up -> Roam
+                    // 1. Idle for ~2s
                     setTimeout(() => {
-                        // After 2-3s of idle, start coding
                         state.current = 'CODING';
 
-                        // Code for 4s, then fly away
+                        // 2. Code for ~4s
                         setTimeout(() => {
-                            decideNextMove();
+                            state.current = 'THUMBS_UP';
+
+                            // 3. Thumbs Up for ~2s (Celebrate fix)
+                            setTimeout(() => {
+                                decideNextMove();
+                            }, 2000);
+
                         }, 4000);
 
-                    }, 2000 + Math.random() * 1000);
+                    }, 2000 + Math.random() * 500);
                 }
             }
             // PERCHED & CODING states are handled by timeouts/intervals above
@@ -167,10 +175,10 @@ const ScreenPet = () => {
         trail.className = 'pixel-trail';
 
         // Offset Logic for "Following"
-        // If facing Right (Moving Right) -> Trail spawns on Left (Tail), closer to x
-        // If facing Left (Moving Left) -> Trail spawns on Right (Tail), closer to x + width
-        const offsetX = isFacingRight ? 0 : 55;
-        const offsetY = 40; // Near feet/belly
+        // If facing Right (Moving Right) -> Trail spawns on Left (Tail), closer to x - 10
+        // If facing Left (Moving Left) -> Trail spawns on Right (Tail), closer to x + 70
+        const offsetX = isFacingRight ? -10 : 70;
+        const offsetY = 45; // Near feet/belly
 
         trail.style.left = `${x + offsetX}px`;
         trail.style.top = `${y + offsetY}px`;
