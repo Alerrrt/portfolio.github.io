@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Apple, Search, Sun, Moon, Palette, Thermometer } from 'lucide-react';
+import { Apple, Search, Sun, Moon, Palette } from 'lucide-react';
 
 const Header = () => {
     const [time, setTime] = useState(new Date());
     const [inverted, setInverted] = useState(false);
-    const [temperature, setTemperature] = useState(null);
-    const [tempLoading, setTempLoading] = useState(true);
+
 
     const toggleTheme = () => {
         setInverted(!inverted);
@@ -17,39 +16,7 @@ const Header = () => {
         return () => clearInterval(timer);
     }, []);
 
-    // Fetch user's location and temperature
-    useEffect(() => {
-        const fetchTemperature = async () => {
-            try {
-                // Get user's position
-                const position = await new Promise((resolve, reject) => {
-                    navigator.geolocation.getCurrentPosition(resolve, reject);
-                });
 
-                const { latitude, longitude } = position.coords;
-
-                // Fetch weather from Open-Meteo (free, no API key needed)
-                const response = await fetch(
-                    `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current_weather=true&temperature_unit=celsius`
-                );
-                const data = await response.json();
-
-                if (data.current_weather) {
-                    setTemperature(Math.round(data.current_weather.temperature));
-                }
-            } catch (error) {
-                console.error('Failed to fetch temperature:', error);
-                setTemperature('--');
-            } finally {
-                setTempLoading(false);
-            }
-        };
-
-        fetchTemperature();
-        // Refresh temperature every 10 minutes
-        const interval = setInterval(fetchTemperature, 10 * 60 * 1000);
-        return () => clearInterval(interval);
-    }, []);
 
     const getTimeInfo = (date, timeZone) => {
         const options = { timeZone, hour: 'numeric', minute: '2-digit', hour12: true };
@@ -86,13 +53,7 @@ const Header = () => {
                     <span>{india.timeString}</span>
                 </div>
                 <div className="w-[1px] h-3 bg-gray-400"></div>
-                <div className="flex items-center gap-1">
-                    <Thermometer size={12} className="text-red-500" />
-                    <span>
-                        {tempLoading ? '...' : temperature !== null ? `${temperature}°C` : '--'}
-                    </span>
-                </div>
-                <div className="w-[1px] h-3 bg-gray-400 mx-1"></div>
+
                 <Search size={16} className="cursor-pointer" />
             </div>
         </header>
