@@ -35,7 +35,6 @@ const ScreenPet = () => {
     // 1. Logic Loop
     React.useEffect(() => {
         const bird = document.getElementById('bird-container');
-        const bubble = document.querySelector('.speech-bubble');
 
         // --- ANIMATION INTERVAL ---
         const animInterval = setInterval(() => {
@@ -81,18 +80,7 @@ const ScreenPet = () => {
                 if (hasReachedTarget()) {
                     state.current = 'IDLE_TOP_LEFT';
                     targetPos.current = null;
-
-                    // Show Bubble Logic
-                    const hasSeen = localStorage.getItem('hasSeenResumeBubble');
-                    if (!hasSeen && bubble) {
-                        bubble.style.display = 'block';
-                        setTimeout(() => {
-                            if (bubble) bubble.style.display = 'none';
-                            decideNextMove();
-                        }, 5000);
-                    } else {
-                        setTimeout(decideNextMove, 2000);
-                    }
+                    setTimeout(decideNextMove, 2000);
                 }
             }
 
@@ -195,29 +183,9 @@ const ScreenPet = () => {
         };
     }, []);
 
-    const handleBubbleClick = (e) => {
-        e.stopPropagation();
-        const bubble = document.querySelector('.speech-bubble');
-        if (bubble) bubble.style.display = 'none';
-
-        const link = document.createElement('a');
-        link.href = 'Ajin-S-Resume.docx';
-        link.download = 'Ajin-S-Resume.docx';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        localStorage.setItem('hasSeenResumeBubble', 'true');
-    };
 
     return (
         <div id="bird-container" style={{ position: 'fixed', left: -100, top: -100, zIndex: 9999 }}>
-            <div
-                className="speech-bubble"
-                style={{ cursor: 'pointer' }}
-            >
-                Click to download resume
-            </div>
             <div style={{
                 transform: facingRight ? 'scaleX(1)' : 'scaleX(-1)',
                 display: 'inline-block',

@@ -63,7 +63,7 @@ const Layout = ({ children }) => {
                 </div>
             </main>
             <footer className="bg-mac-gray border-t-2 border-mac-border p-4 text-center text-xs font-mono">
-                <p className="mb-2">Bengaluru, India | +91 9360815103 | sajuajin8680@gmail.com</p>
+                <p className="mb-2">Bengaluru, India | alerrttt@proton.me</p>
                 <div className="flex justify-center gap-4">
                     <a href="https://www.linkedin.com/in/ajin-s-763b94226/" target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-800">LinkedIn</a>
                     <a href="https://x.com/Homelander827" target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-800">Twitter/X</a>
