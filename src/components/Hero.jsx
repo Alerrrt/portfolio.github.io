@@ -5,17 +5,78 @@ import useTypewriter from '../hooks/useTypewriter';
 
 const Hero = () => {
     const text = useTypewriter("Hello.\nI'm Ajin");
+    const preRef = React.useRef(null);
+
+    React.useEffect(() => {
+        const ASCII_URLS = {
+            large: '/assets/ascii_desktop.txt',
+            medium: '/assets/ascii_tablet.txt',
+            small: '/assets/ascii_mobile.txt'
+        };
+
+        const chooseSize = (w) => {
+            if (w >= 1000) return 'large';
+            if (w >= 600) return 'medium';
+            return 'small';
+        };
+
+        let currentSize = null;
+        let resizeTimeout = null;
+
+        const loadAsciiForViewport = async () => {
+            const size = chooseSize(window.innerWidth);
+            if (size === currentSize) return;
+
+            currentSize = size;
+            const url = ASCII_URLS[size];
+
+            try {
+                const res = await fetch(url, { cache: "no-cache" });
+                if (!res.ok) throw new Error('Failed to load ' + url);
+                const text = await res.text();
+                if (preRef.current) {
+                    preRef.current.textContent = text;
+                }
+            } catch (err) {
+                console.error('ASCII load error:', err);
+                if (preRef.current) {
+                    preRef.current.textContent = '';
+                }
+            }
+        };
+
+        const handleResize = () => {
+            if (resizeTimeout) clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(loadAsciiForViewport, 180);
+        };
+
+        window.addEventListener('resize', handleResize);
+        loadAsciiForViewport();
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            if (resizeTimeout) clearTimeout(resizeTimeout);
+        };
+    }, []);
 
     return (
-        <section
-            className="relative py-12 md:py-20 border-b-2 border-mac-border border-dashed mb-12 min-h-[600px] flex items-center overflow-hidden"
-            style={{
-                backgroundImage: "url('Clean.png')",
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat'
-            }}
-        >
+        <section className="relative py-12 md:py-20 border-b-2 border-mac-border border-dashed mb-12 min-h-[600px] flex items-center overflow-hidden">
+            {/* ASCII Background Layer */}
+            <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none select-none opacity-50">
+                <div role="img" aria-label="Portrait made from ASCII characters" className="w-full max-w-[1200px] p-8 box-border flex justify-center items-center">
+                    <pre
+                        ref={preRef}
+                        id="ascii"
+                        aria-hidden="false"
+                        className="m-0 p-0 whitespace-pre font-mono text-[length:clamp(8px,2.4vw,22px)] leading-[0.85] tracking-normal overflow-hidden max-w-full text-mac-text"
+                        style={{
+                            fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Monaco, "Courier New", monospace',
+                            textRendering: 'geometricPrecision',
+                            WebkitFontSmoothing: 'antialiased'
+                        }}
+                    ></pre>
+                </div>
+            </div>
 
             <div className="relative max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-8 md:gap-12 w-full px-4 z-10">
                 <div className="flex-1 w-full text-center md:text-left">
