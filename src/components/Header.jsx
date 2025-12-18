@@ -31,7 +31,7 @@ const Header = () => {
     return (
         <header className="fixed top-0 left-0 w-full bg-mac-window border-b-2 border-mac-border z-50 flex items-center px-2 h-8 font-retro text-sm select-none shadow-retro">
             <div className="flex items-center gap-3">
-                <a href="Ajin-S-Resume.docx" download className="hover:bg-mac-blue hover:text-white px-1 py-1 rounded-sm transition-colors flex items-center justify-center group" title="Download Resume">
+                <a href="Ajin S -  Resume.pdf" download="Ajin S - Resume.pdf" className="hover:bg-mac-blue hover:text-white px-1 py-1 rounded-sm transition-colors flex items-center justify-center group" title="Download Resume">
                     <img src="retro-floppy.png" alt="Download Resume" className="w-8 h-8 object-contain group-hover:invert" />
                 </a>
                 <AnimatePresence>
