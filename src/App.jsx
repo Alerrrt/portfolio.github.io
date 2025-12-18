@@ -19,11 +19,12 @@ function App() {
       <RevealOnScroll delay={200}>
         <Experience />
       </RevealOnScroll>
-      <RevealOnScroll delay={100}>
-        <Skills />
-      </RevealOnScroll>
+
       <RevealOnScroll delay={200}>
         <Certifications />
+      </RevealOnScroll>
+      <RevealOnScroll delay={100}>
+        <Skills />
       </RevealOnScroll>
     </Layout>
   );

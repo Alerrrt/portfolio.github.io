@@ -1,5 +1,9 @@
 import React from 'react';
-import { Award, ExternalLink, Calendar, Shield, Code } from 'lucide-react';
+import { AwardIcon as Award } from './ui/award';
+import { ExternalLinkIcon as ExternalLink } from './ui/external-link';
+import { CalendarIcon as Calendar } from './ui/calendar';
+import { ShieldIcon as Shield } from './ui/shield';
+import { CodeIcon as Code } from './ui/code';
 
 const Certifications = () => {
     const certs = [
@@ -20,7 +24,7 @@ const Certifications = () => {
                     date: "Sept 2023",
                     id: "RTXSTU112405977",
                     icon: Shield,
-                    link: "RedTeam-CPT-Certificate.pdf"
+                    link: "https://www.linkedin.com/posts/ajin-s-763b94226_completed-as-a-certified-penetration-tester-activity-7137784263910821888-sa_S?utm_source=share&utm_medium=member_desktop&rcm=ACoAADjFnDsB9Bhj9MydZhbcfpcPVp5C-vD_87Y"
                 },
                 {
                     title: "EyeDotNet Ethical Hacking Internship Program",

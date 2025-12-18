@@ -1,59 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { Terminal, Code } from 'lucide-react';
+import React from 'react';
+import { CodeIcon as Code } from '@/components/ui/code';
+import { TerminalIcon as Terminal } from '@/components/ui/terminal';
+import useTypewriter from '../hooks/useTypewriter';
 
 const Hero = () => {
-    const [text, setText] = useState('');
-    const fullText = "Hello.\nI'm Ajin";
-
-    useEffect(() => {
-        let timeout;
-        let charIndex = 0;
-        let isDeleting = false;
-        const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*";
-
-        const type = () => {
-            const currentFullText = fullText;
-
-            if (isDeleting) {
-                // Deleting Phase
-                if (charIndex > 0) {
-                    setText(currentFullText.slice(0, charIndex - 1));
-                    charIndex--;
-                    timeout = setTimeout(type, 50);
-                } else {
-                    isDeleting = false;
-                    timeout = setTimeout(type, 1000); // Pause before re-typing
-                }
-            } else {
-                // Typing Phase with "Hacker" Scramble
-                // 1. Set text to correct substring + 1 random char
-                // 2. Short delay, then set to correct substring + correct char
-
-                if (charIndex < currentFullText.length) {
-                    // Show random char first (Glitch effect)
-                    const randomChar = chars[Math.floor(Math.random() * chars.length)];
-                    setText(currentFullText.slice(0, charIndex) + randomChar);
-
-                    // Quick flip to real char
-                    setTimeout(() => {
-                        setText(currentFullText.slice(0, charIndex + 1));
-                        charIndex++;
-                        if (!isDeleting) { // Ensure we didn't switch state mid-timeout (unlikely but safe)
-                            timeout = setTimeout(type, Math.random() * 50 + 50);
-                        }
-                    }, 50);
-                } else {
-                    // Finished typing
-                    isDeleting = true;
-                    timeout = setTimeout(type, 3000); // Wait before deleting
-                }
-            }
-        };
-
-        timeout = setTimeout(type, 1000);
-
-        return () => clearTimeout(timeout);
-    }, []);
+    const text = useTypewriter("Hello.\nI'm Ajin");
 
     return (
         <section
@@ -85,7 +36,7 @@ const Hero = () => {
                             <Terminal size={20} />
                             View Projects
                         </a>
-                        <a href="mailto:alerrttt@proton.me" className="bg-black text-white px-6 py-3 rounded-md font-bold hover:bg-gray-800 transition-colors flex items-center gap-2 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
+                        <a href="mailto:ajinisadev@proton.me" className="bg-black text-white px-6 py-3 rounded-md font-bold hover:bg-gray-800 transition-colors flex items-center gap-2 border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]">
                             <Code size={20} />
                             Contact Me
                         </a>

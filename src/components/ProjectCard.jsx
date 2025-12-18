@@ -1,5 +1,5 @@
 import React from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLinkIcon as ExternalLink } from './ui/external-link';
 
 const ProjectCard = ({ title, description, tags, link, asciiArt, image }) => {
     return (

@@ -1,49 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
+import { WINDOW_TITLE_JOKES } from '../constants';
 
 const Layout = ({ children }) => {
     const [title, setTitle] = useState('Namaste');
 
     useEffect(() => {
-        const jokes = [
-            "sudo make me a sandwich",
-            "rm -rf / --no-preserve-root",
-            "404: Sleep Not Found",
-            "git push --force",
-            "Compiling...",
-            "I'm feeling lucky",
-            "ping 8.8.8.8",
-            "Searching for meaning...",
-            "System.out.println('Hello')",
-            "C:\\DOS\\RUN",
-            "Namaste",
-            "Searching for WiFi...",
-            "Insert disk 2 to continue",
-            "Press ANY key to panic",
-            "Guru Meditation",
-            "PC Load Letter",
-            "It works on my machine",
-            "git commit -m 'fixed stuff'",
-            "chmod 777 universe",
-            "while(true) { sleep(); }",
-            "Ctrl+Alt+Del in progress",
-            "Identifying identity...",
-            "Downloading RAM...",
-            "Hacking the mainframe...",
-            "Establish connection...",
-            "rm -rf /past/mistakes",
-            "Defragmenting reality...",
-            "A fatal exception has occurred",
-            "Task failed successfully",
-            "Reticulating splines...",
-            "Buffer overflow...",
-            "Blue Screen of Life",
-            "Formatting C: ...",
-            "Kernel panic!",
-            "Undefined is not a function",
-            "00101010"
-        ];
-        const randomJoke = jokes[Math.floor(Math.random() * jokes.length)];
+        const randomJoke = WINDOW_TITLE_JOKES[Math.floor(Math.random() * WINDOW_TITLE_JOKES.length)];
         setTitle(randomJoke);
     }, []);
 
@@ -62,13 +25,7 @@ const Layout = ({ children }) => {
                     </div>
                 </div>
             </main>
-            <footer className="bg-mac-gray border-t-2 border-mac-border p-4 text-center text-xs font-mono">
-                <p className="mb-2">Bengaluru, India | alerrttt@proton.me</p>
-                <div className="flex justify-center gap-4">
-                    <a href="https://www.linkedin.com/in/ajin-s-763b94226/" target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-800">LinkedIn</a>
-                    <a href="https://x.com/Homelander827" target="_blank" rel="noopener noreferrer" className="hover:underline text-blue-800">Twitter/X</a>
-                </div>
-            </footer>
+            {/* Footer removed and moved to Header */}
         </div>
     );
 };
