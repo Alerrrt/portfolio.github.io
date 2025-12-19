@@ -3,7 +3,7 @@ import ProjectCard from './ProjectCard';
 
 const projects = [
     {
-        title: 'Project Nightingale V2',
+        title: 'Project-Penguin',
         description: 'Advanced security scanner with robust concurrency and real-time updates.',
         tags: ['Security Scanner', 'Python', 'React'],
         link: 'https://github.com/Alerrrt/Project-Nightingale-V2',
