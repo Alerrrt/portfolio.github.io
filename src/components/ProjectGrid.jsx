@@ -21,7 +21,7 @@ const projects = [
         description: 'Served as a Business Development Intern at 5irechain. Hosted W3K events and contributed to ecosystem growth.',
         tags: ['Business Development', 'Community', 'Web3'],
         link: 'https://x.com/Homelanderr827',
-        image: 'Web.png'
+        image: 'web3-community-ascii.png'
     }
 ];
 
