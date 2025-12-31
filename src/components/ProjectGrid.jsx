@@ -14,7 +14,7 @@ const projects = [
         description: 'Comprehensive VAPT on web applications with detailed remediation guidance.',
         tags: ['VAPT', 'Burp Suite', 'OWASP'],
         link: '#skills',
-        image: 'web-pentest-v2.png'
+        image: 'web-pentest-ascii.png'
     },
     {
         title: 'Web3 Community Building',
