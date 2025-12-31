@@ -7,7 +7,7 @@ const projects = [
         description: 'Pure CLI reconnaissance tool for penetration testers with efficient subdomain enumeration and port scanning.',
         tags: ['CLI Tool', 'Go', 'Recon'],
         link: 'https://github.com/Alerrrt/Neutron-ng',
-        image: 'Nigingale-ASCII.png'
+        image: 'neutron-ascii.png'
     },
     {
         title: 'Web Penetration Testing',
