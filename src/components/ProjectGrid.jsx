@@ -15,6 +15,13 @@ const projects = [
         tags: ['CLI Tool', 'Go', 'Recon'],
         link: 'https://github.com/Alerrrt/Neutron-ng',
         image: 'neutron-ascii.png'
+    },
+    {
+        title: 'Web3 Community Building',
+        description: 'Served as a Business Development Intern at 5irechain. Hosted W3K events and contributed to ecosystem growth.',
+        tags: ['Business Development', 'Community', 'Web3'],
+        link: 'https://x.com/Homelanderr827',
+        image: 'web3-community-ascii.png'
     }
 ];
 
