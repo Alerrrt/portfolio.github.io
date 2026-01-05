@@ -3,25 +3,18 @@ import ProjectCard from './ProjectCard';
 
 const projects = [
     {
+        title: 'One-for-All',
+        description: 'Production-ready file conversion engine supporting 250+ formats with enterprise-grade security and queue-based async processing.',
+        tags: ['File Conversion', 'Python/FastAPI', 'React'],
+        link: 'https://github.com/Alerrrt/One-for-All',
+        image: 'one-for-all-ascii.png'
+    },
+    {
         title: 'Neutron-ng',
         description: 'Pure CLI reconnaissance tool for penetration testers with efficient subdomain enumeration and port scanning.',
         tags: ['CLI Tool', 'Go', 'Recon'],
         link: 'https://github.com/Alerrrt/Neutron-ng',
         image: 'neutron-ascii.png'
-    },
-    {
-        title: 'Web Penetration Testing',
-        description: 'Comprehensive VAPT on web applications with detailed remediation guidance.',
-        tags: ['VAPT', 'Burp Suite', 'OWASP'],
-        link: '#skills',
-        image: 'web-pentest-ascii.png'
-    },
-    {
-        title: 'Web3 Community Building',
-        description: 'Served as a Business Development Intern at 5irechain. Hosted W3K events and contributed to ecosystem growth.',
-        tags: ['Business Development', 'Community', 'Web3'],
-        link: 'https://x.com/Homelanderr827',
-        image: 'web3-community-ascii.png'
     }
 ];
 
