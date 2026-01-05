@@ -6,7 +6,6 @@ import { SearchIcon as Search } from '@/components/ui/search';
 import { SunIcon as Sun } from '@/components/ui/sun';
 import { MoonIcon as Moon } from '@/components/ui/moon';
 import useTime from '../hooks/useTime';
-import html2pdf from 'html2pdf.js';
 
 const Header = () => {
     const [inverted, setInverted] = useState(false);
@@ -27,75 +26,14 @@ const Header = () => {
         document.documentElement.classList.toggle('theme-inverted');
     };
 
-    const handleDownloadResume = async (e) => {
-        e.preventDefault();
-
-        try {
-            // Fetch the resume HTML
-            const response = await fetch('/resume.html');
-            const htmlContent = await response.text();
-
-            // Create a temporary container
-            const tempContainer = document.createElement('div');
-            tempContainer.innerHTML = htmlContent;
-
-            // Critical: Ensure the container is visible but off-screen to allow image loading
-            tempContainer.style.position = 'absolute';
-            tempContainer.style.left = '-9999px';
-            tempContainer.style.top = '0';
-            tempContainer.style.width = '210mm'; // A4 width
-            document.body.appendChild(tempContainer);
-
-            // Wait for images to load
-            const images = tempContainer.getElementsByTagName('img');
-            const imagePromises = Array.from(images).map(img => {
-                if (img.complete) return Promise.resolve();
-                return new Promise(resolve => {
-                    img.onload = resolve;
-                    img.onerror = resolve; // Continue even if image fails
-                });
-            });
-
-            await Promise.all(imagePromises);
-
-            // Configure PDF options
-            const opt = {
-                margin: 0,
-                filename: 'Ajin_S_Resume.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: {
-                    scale: 2,
-                    useCORS: true,
-                    logging: false
-                },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
-
-            // Generate PDF from the .resume-container element inside the loaded HTML
-            const element = tempContainer.querySelector('.resume-container') || tempContainer;
-            await html2pdf().set(opt).from(element).save();
-
-            // Cleanup
-            document.body.removeChild(tempContainer);
-
-        } catch (error) {
-            console.error('Error generating PDF:', error);
-            alert('Failed to generate PDF. Please try again.');
-        }
-    };
-
     const india = getTimeInfo('Asia/Kolkata');
 
     return (
         <header className="fixed top-0 left-0 w-full bg-mac-window border-b-2 border-mac-border z-50 flex items-center px-2 h-8 font-retro text-sm select-none shadow-retro">
             <div className="flex items-center gap-3">
-                <button
-                    onClick={handleDownloadResume}
-                    className="hover:bg-mac-blue hover:text-white px-1 py-1 rounded-sm transition-colors flex items-center justify-center group cursor-pointer border-none bg-transparent"
-                    title="Download Resume"
-                >
+                <a href="Ajin_S_Resume.pdf" download="Ajin_S_Resume.pdf" className="hover:bg-mac-blue hover:text-white px-1 py-1 rounded-sm transition-colors flex items-center justify-center group" title="Download Resume">
                     <img src="retro-floppy.png" alt="Download Resume" className="w-8 h-8 object-contain group-hover:invert" />
-                </button>
+                </a>
                 <AnimatePresence>
                     {showBanner && (
                         <motion.div
