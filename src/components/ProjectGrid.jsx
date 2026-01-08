@@ -20,7 +20,7 @@ const projects = [
         title: 'Web3 Community Building',
         description: 'Served as a Business Development Intern at 5irechain. Hosted W3K events and contributed to ecosystem growth.',
         tags: ['Business Development', 'Community', 'Web3'],
-        link: 'https://x.com/Homelanderr827',
+        link: 'https://x.com/a71n_cr4sh',
         image: 'web3-community-ascii.png'
     }
 ];

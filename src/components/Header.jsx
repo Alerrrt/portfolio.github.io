@@ -58,7 +58,7 @@ const Header = () => {
                     <span>|</span>
                     <a href="https://www.linkedin.com/in/ajin-s-763b94226/" target="_blank" rel="noopener noreferrer" className="hover:underline text-[rgb(255,97,26)]">LinkedIn</a>
                     <span>|</span>
-                    <a href="https://x.com/Homelanderr827" target="_blank" rel="noopener noreferrer" className="hover:underline text-[rgb(255,97,26)]">Twitter/X</a>
+                    <a href="https://x.com/a71n_cr4sh" target="_blank" rel="noopener noreferrer" className="hover:underline text-[rgb(255,97,26)]">Twitter/X</a>
                 </div>
             </nav>
             <div className="flex items-center gap-3 px-2 ml-auto text-xs font-mono whitespace-nowrap">
