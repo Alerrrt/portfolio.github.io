@@ -1,0 +1,327 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-geist-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif;
+  --font-geist-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  --radius: 0.625rem;
+  --nav-height: 4rem;
+  --footer-height: 3.75rem;
+
+  /* Black theme — the toggle alternate (true dark, blue accent) */
+  --background: 0 0% 4%;
+  --foreground: 0 0% 96%;
+  --card: 0 0% 9%;
+  --card-foreground: 0 0% 96%;
+  --primary: 210 100% 72%;
+  --primary-foreground: 0 0% 5%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 96%;
+  --muted: 0 0% 13%;
+  --muted-foreground: 0 0% 62%;
+  --accent: 210 100% 72%;
+  --accent-foreground: 0 0% 5%;
+  --border: 0 0% 22%;
+  --input: 0 0% 22%;
+  --ring: 210 100% 72%;
+}
+
+.dark {
+  /* Dark theme */
+  --background: 225 40% 13%;
+  --foreground: 206 100% 99%;
+  --card: 225 40% 18%;
+  --card-foreground: 206 100% 99%;
+  --primary: 210 100% 78%;
+  --primary-foreground: 225 40% 13%;
+  --secondary: 211 48% 44%;
+  --secondary-foreground: 206 100% 99%;
+  --muted: 225 30% 24%;
+  --muted-foreground: 210 55% 72%;
+  --accent: 210 100% 78%;
+  --accent-foreground: 225 40% 13%;
+  --border: 211 40% 32%;
+  --input: 211 40% 32%;
+  --ring: 210 100% 78%;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Smooth theme cross-fade */
+body,
+header,
+footer,
+main {
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+::selection {
+  background: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* Thin themed scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--border)) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent) / 0.5);
+}
+
+/* Consistent keyboard focus rings */
+:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Touch devices have no hover — always show collapsed section detail and drop hover hints */
+@media (hover: none), (pointer: coarse) {
+  .reveal {
+    grid-template-rows: 1fr !important;
+    opacity: 1 !important;
+  }
+  .hover-hint {
+    display: none !important;
+  }
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: var(--font-geist-sans);
+  -webkit-font-smoothing: antialiased;
+  /* Carbon fibre pattern — adapts to theme */
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      hsl(var(--background) / 0.5) 0px,
+      hsl(var(--background) / 0.5) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      hsl(var(--background) / 0.5) 0px,
+      hsl(var(--background) / 0.5) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      hsl(var(--foreground) / 0.05) 0px,
+      hsl(var(--foreground) / 0.05) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      hsl(var(--foreground) / 0.05) 0px,
+      hsl(var(--foreground) / 0.05) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+/* Alpha (pixel-mosaic) wash — frames content from the edges, softest at center */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: url("/footer-alpha.jpg");
+  background-size: 420px auto;
+  background-repeat: repeat;
+  opacity: 0.045;
+  -webkit-mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 45%,
+    transparent 35%,
+    #000 100%
+  );
+  mask-image: radial-gradient(
+    ellipse 80% 70% at 50% 45%,
+    transparent 35%,
+    #000 100%
+  );
+}
+
+/* Keep app content above the wash */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+.bg-carbon {
+  background-color: hsl(var(--background));
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      hsl(var(--foreground) / 0.04) 0px,
+      hsl(var(--foreground) / 0.04) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      hsl(var(--foreground) / 0.04) 0px,
+      hsl(var(--foreground) / 0.04) 1px,
+      transparent 1px,
+      transparent 4px
+    );
+}
+
+.bg-grid {
+  background-image: linear-gradient(
+      to right,
+      hsl(var(--border) / 0.4) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, hsl(var(--border) / 0.4) 1px, transparent 1px);
+  background-size: 3rem 3rem;
+}
+
+.text-shine {
+  background: linear-gradient(
+    110deg,
+    hsl(var(--foreground)) 40%,
+    hsl(var(--muted-foreground)) 50%,
+    hsl(var(--foreground)) 60%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 8s linear infinite;
+}
+
+@keyframes shine {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* Matrix button background */
+.matrix-btn {
+  position: relative;
+  background-color: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+  box-shadow:
+    inset 0 0 20px hsl(var(--foreground) / 0.05),
+    0 0 15px hsl(var(--foreground) / 0.1);
+  overflow: hidden;
+}
+
+.matrix-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    linear-gradient(hsl(var(--border) / 0.3) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--border) / 0.3) 1px, transparent 1px),
+    repeating-linear-gradient(
+      45deg,
+      hsl(var(--foreground) / 0.03) 0px 1px,
+      transparent 1px 12px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      hsl(var(--foreground) / 0.03) 0px 1px,
+      transparent 1px 12px
+    );
+  background-size:
+    28px 28px,
+    28px 28px,
+    50px 50px,
+    50px 50px;
+  z-index: 0;
+}
+
+.matrix-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(
+    circle,
+    hsl(var(--accent) / 0.15) 0%,
+    transparent 70%
+  );
+  transform: translate(-50%, -50%);
+  animation: matrixPulse 3.5s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.matrix-btn-border {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--accent) / 0.4),
+    transparent
+  );
+  animation: matrixBorderFlow 6s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+  mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+}
+
+@keyframes matrixBorderFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+@keyframes matrixPulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.85);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.5;
+  }
+}

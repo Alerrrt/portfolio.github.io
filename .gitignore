@@ -1,0 +1,28 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+build/
+
+# misc
+.DS_Store
+*.pem
+*.tsbuildinfo
+next-env.d.ts
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# env files
+.env*
+
+# stray root-level image duplicates (canonical copies live in public/)
+/Penguin.jpg
+/download internet.jpg
+/footer-alpha.jpg
+/fssai-removebg-preview.png
+/luffy.jpg
